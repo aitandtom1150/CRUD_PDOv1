@@ -22,14 +22,19 @@ th,
 td {
   padding: 10 50px;
 }
+
 th {
   background-color: rgba(0, 0, 0, 0.2);
 }
+
 tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Light border between rows */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Light border between rows */
 }
+
 tr:last-child {
-    border-bottom: none; /* No border for the last row */
+  border-bottom: none;
+  /* No border for the last row */
 }
 
 
