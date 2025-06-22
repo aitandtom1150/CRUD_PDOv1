@@ -8,16 +8,68 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css?v=1.0">
     <title>CRUD_PDOv1</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
 </head>
 
 <body>
+    <!-- modal -->
+    <div class="modal fade"id="Add-User-Modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: rgba(255, 255, 255, 0.04); padding: 30px; border-radius: 26px">
+
+                <!-- st modal header -->
+                <div class="modal-header">
+                    <h1 class="modal-title fs-2 text-white">Add User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- end modal header -->
+
+                <!-- st modal body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-4" style="display: flex; justify-content: space-between;">
+                            <div style="margin-right: 5px;">
+                                <input type="text" class="form-control" id="firstname" name="firstname"
+                                    placeholder="First Name..." required>
+                            </div>
+                            <div style="margin-left: 5px;">
+                                <input type="text" class="form-control" id="firstname" name="firstname"
+                                    placeholder="Last Name..." required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" id="firstname" name="firstname"
+                                placeholder="Email..." required>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="firstname" name="firstname"
+                                placeholder="Phone..." required>
+                        </div>
+                    </form>
+                </div>
+                <!-- end modal body -->
+
+                <!-- st modal footer -->
+                <div class="modal-footer mb-4">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info" id="btn-add-user">Submit</button>
+                </div>
+                <!-- end modal footer -->
+            </div>
+        </div>
+    </div>
+
 
     <!-- start table -->
     <div class="container">
         <div class="table-header">
             Users List
             <div style="text-align: center;">
-                <button type="button" class="btn btn-info">Add User</button>
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#Add-User-Modal">Add
+                    User</button>
             </div>
         </div>
         <table>

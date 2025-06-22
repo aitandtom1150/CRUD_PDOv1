@@ -37,7 +37,13 @@ tr:last-child {
   /* No border for the last row */
 }
 
-
+/* modal config */
+.modal-header{
+  border-bottom: none !important;
+}
+.modal-footer{
+  border-top: none !important;
+}
 
 .container {
   background-color: rgb(214, 159, 159);
