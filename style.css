@@ -13,14 +13,15 @@ body {
 }
 
 table {
-  width: 100%;
+  table-layout: fixed;
+  /* width: 100%; */
   border-collapse: collapse;
-  color: white;
+  color: white; 
 }
 
-th,
-td {
-  padding: 10 50px;
+th,td {
+  padding: 10px 50px;
+  word-wrap: break-word; /* เพิ่มบรรทัดนี้ */
 }
 
 th {
@@ -43,6 +44,23 @@ tr:last-child {
 }
 .modal-footer{
   border-top: none !important;
+}
+
+/* ปรับขนาดความกล้างแต่ละ column */
+th:nth-child(1), td:nth-child(1) { 
+  width: 10%;
+}
+th:nth-child(2), td:nth-child(2) { 
+  width: 20%;
+}
+th:nth-child(3), td:nth-child(3) { 
+  width: 20%;
+}
+th:nth-child(4), td:nth-child(4) { 
+  width: 30%;
+}
+th:nth-child(5), td:nth-child(5) { 
+  width: 20%;
 }
 
 .container {
