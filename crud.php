@@ -18,6 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit;
 }
+// DELETE
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    // อ่านข้อมูลจาก body ของ request (สำหรับ DELETE method)
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    $id = $data['ID'] ?? null; // ใช้ Null Coalescing Operator เพื่อป้องกัน undefined index
+
+    if (!$id) {
+        echo json_encode(['success' => false, 'message' => 'User ID is required.']);
+        exit; // หยุดการทำงานถ้าไม่มี ID
+    }
+
+    try {
+        $stmt = $conn->prepare('DELETE FROM users WHERE ID = :id');
+        $stmt->execute([':id' => $id]);;
+        echo json_encode(['success' => true, 'message' => 'User deleted successfully.']);
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+        exit;
+}
 
 try {
     $stmt = $conn->query("SELECT * FROM users");
