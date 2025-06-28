@@ -40,11 +40,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         exit;
 }
 
-try {
-    $stmt = $conn->query("SELECT * FROM users");
-    $users = $stmt->fetchAll();
-    echo json_encode($users);
-} catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    try {
+        $stmt = $conn->query("SELECT * FROM users");
+        $users = $stmt->fetchAll();
+        echo json_encode($users);
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+    }
+    exit;
 }
+
+
+
+// UPDATE , EDIT
+
+// UPDATE ด้วย PDO
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    $input = json_decode(file_get_contents('php://input'), true);
+
+    $id = $input['ID'];
+    $fname = $input['fname'];
+    $lname = $input['lname'];
+    $email = $input['email'];
+    $phone = $input['phone'];
+
+    try {
+        $stmt = $conn->prepare("UPDATE users SET fname = :fname, lname = :lname, email = :email, phone = :phone WHERE ID = :id");
+        $stmt->execute([
+            ':fname' => $fname,
+            ':lname' => $lname,
+            ':email' => $email,
+            ':phone' => $phone,
+            ':id' => $id
+        ]);
+        echo json_encode(['success' => true, 'message' => 'User updated']);
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+    }
+
+    exit;
+}
+
 ?>
+

@@ -37,6 +37,8 @@ function loadUsers() {
             alert("Something wrong while fetching users.")
         });
 }
+
+
 // function สำหรับแนบ Event Listeners ให้ปุ่ม Edit,Delete
 function attachEventListeners() {
     // btn Edit
@@ -52,17 +54,20 @@ function attachEventListeners() {
     })
 }
 
+
+
 // Event hadler สำหรับปุ่ม Edit
 function handleEditClick(event) {
     const button = event.target;
-    const id = button.dataset.id;
     const fname = button.dataset.fname;
     const lname = button.dataset.lname;
     const email = button.dataset.email;
     const phone = button.dataset.phone;
 
     // เติมข้อมูล ลงใน form แก้ไข
-    document.getElementById("edit-user-ID").value = id;
+    const id = button.dataset.id;
+
+    document.getElementById("edit-user-ID").value = id; // จำเป็นต้องมี
     document.getElementById("edit-firstname").value = fname;
     document.getElementById("edit-lastname").value = lname;
     document.getElementById("edit-email").value = email;
@@ -104,7 +109,51 @@ function handleDeleteClick(event) {
 document.addEventListener("DOMContentLoaded", loadUsers);
 
 
-// เมื่อ submit form
+// เมื่อกด submit form Edit
+document.getElementById("form-edit-user").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const id = document.getElementById("edit-user-ID").value;
+    const fname = document.getElementById("edit-firstname").value;
+    const lname = document.getElementById("edit-lastname").value;
+    const email = document.getElementById("edit-email").value;
+    const phone = document.getElementById("edit-phone").value;
+
+    fetch("crud.php", {
+        method: "PUT", // ใช้ PUT หรือ PATCH
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ID: id,
+            fname,
+            lname,
+            email,
+            phone,
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("User updated!");
+
+                // ปิด modal
+                const modalElement = document.getElementById('Edit-User-Modal');
+                const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+                modal.hide();
+
+                loadUsers(); // โหลดข้อมูลใหม่
+            } else {
+                alert("Update Error: " + data.message);
+            }
+        })
+        .catch(err => {
+            console.error("Error updating user:", err);
+            alert("Something went wrong while updating user.");
+        });
+});
+
+
+// เมื่อ submit form Add
 document.getElementById("form-add-user").addEventListener("submit", function (e) {
     e.preventDefault(); // กันรีเฟรช
 

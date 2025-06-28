@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <!-- modal -->
+    <!-- st Add modal -->
     <div class="modal fade" id="Add-User-Modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="background-color: rgb(27, 28, 29); padding: 30px; border-radius: 26px">
@@ -64,6 +64,60 @@
             </div>
         </div>
     </div>
+    <!-- end Add modal -->
+
+    <!-- st Edit modal -->
+    <div class="modal fade" id="Edit-User-Modal" tabindex="-1">
+        
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: rgb(27, 28, 29); padding: 30px; border-radius: 26px">
+
+                <!-- st modal header -->
+                <div class="modal-header">
+                    <h1 class="modal-title fs-2 text-white">Edit User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- end modal header -->
+                <form id="form-edit-user">
+                    <input type="hidden" id="edit-user-ID" name="id">
+                    <!-- st modal body -->
+                    <div class="modal-body">
+
+                        <div class="mb-4" style="display: flex; justify-content: space-between;">
+                            <div style="margin-right: 5px;">
+                                <input type="text" class="form-control" id="edit-firstname" name="firstname"
+                                    placeholder="First Name..." required>
+                            </div>
+                            <div style="margin-left: 5px;">
+                                <input type="text" class="form-control" id="edit-lastname" name="lastname"
+                                    placeholder="Last Name..." required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" id="edit-email" name="email" placeholder="Email..."
+                                required>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="edit-phone" name="phone" placeholder="Phone..."
+                                required>
+                        </div>
+
+                    </div>
+                    <!-- end modal body -->
+
+                    <!-- st modal footer -->
+                    <div class="modal-footer mb-4">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button form="form-edit-user" type="submit" class="btn btn-info"
+                            id="btn-edit-user">Submit</button>
+                    </div>
+                    <!-- end modal footer -->
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- end Edit modal -->
 
 
     <!-- start table -->
@@ -84,6 +138,7 @@
                         <th>lname</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
